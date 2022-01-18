@@ -10,12 +10,17 @@
                 <header> <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2> </header>
 
                         {% if article.photo_image %}
-                            <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.photo_image[2] }}" style="max-width: 100%; display: inline; float: center;" /></a>
+                            <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.photo_image[1] }}" style="max-width: 100%; display: inline; float: center;" /></a>
                         {% endif %}
                     <footer class="post-info">
-                        <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time>
+                        <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time> 
                     </footer><!-- /.post-info -->                        
                         <div class="entry-content"> {{ article.summary }} </div>
+                        {% if article.category %}
+                        <div class="category">
+                            Posted in: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+                        </div>
+                        {% endif %}
                         <ul class="actions">
                             <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">More</a></li>
                         </ul>

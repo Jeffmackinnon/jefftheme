@@ -5,7 +5,10 @@
         <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}" />  
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}" />
+        {% if (article and article.photo_gallery) or (articles_page and articles_page.object_list[0].photo_gallery) %}
+	      <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/magnific-popup.css">
+        {% endif %}  
         <meta name="generator" content="Pelican" />
         {% if FEED_ALL_ATOM %}
         <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
@@ -66,8 +69,12 @@
           <strong><a href="{{ SITEURL }}/" class="logo">{{ SITENAME }}{% if SITESUBTITLE %} {{ SITESUBTITLE }}{% endif %}</a></strong>
 
           <ul class="icons">
-            <li><a href="https://twitter.com/jeffmackinnon" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="https://github.com/Jeffmackinnon" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            {% if SOCIAL_TWIITER_LINK %}
+              <li><a href="{{ SOCIAL_TWIITER_LINK }}" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            {% endif %}
+            {% if SOCIAL_GITHUB_LINK %}
+              <li><a href="https://github.com/Jeffmackinnon" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            {% endif %}
             {% if FEED_ALL_ATOM %}
             <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" class="icon brands fa-atom"><span class="label">atom feed</span></a></li>
             {% endif %}
@@ -89,30 +96,17 @@
     <div id="sidebar">
       <div class="inner">
 
-        <!-- Search --> 
-          <section id="search" class="alt">
-
-            
-
-    <iframe src="https://duckduckgo.com/search.html?site=jeffmackinnon.com&prefill=Search" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
-
-
-            <!--<form class="ddg" name="x" action="//duckduckgo.com/">
-              <input type="hidden" value="jeffmackinnon.com" name="sites"></input>
-              <input type="hidden" value="1" name="kh"></input>
-              <input type="hidden" value="1" name="kn"></input>
-              <input type="hidden" value="1" name="kac"></input>
-              <input type="search" placeholder="Search" name="q"></input>
-              <button class="button" type="submit">GO</button>
-          </form>
-            <form method="post" action="#">
-              <input type="text" name="query" id="query" placeholder="Search" />
-            </form> -->
-          </section>
-        <section id="bio">
-
-          <img src="{{ SITEURL }}/images/jeffmackinnon.jpg" style="max-width: 75%; display: inline; float: center; border-radius: 50%;" />
+        <!-- Search -->
+        {% if DUCKDUCKGOSEARCHURL %} 
+        <section id="search" class="alt">            
+          <iframe src="https://duckduckgo.com/search.html?site={{ DUCKDUCKGOSEARCHURL }}&prefill=Search" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
         </section>
+        {% endif %} 
+        {% if BIO_IMAGE %}
+        <section id="bio">
+          <img src="{{ SITEURL }}/images/{{ BIO_IMAGE }}" style="max-width: 75%; display: inline; float: center; border-radius: 50%;" />
+        </section>
+        {% endif %}
 
         <!-- Menu -->
         <nav id="menu">
@@ -169,6 +163,7 @@
           </section> -->
 
         <!-- Section - The various series -->
+        {% if series_name %}
         <section>
           <header class="major">
         <h2>Here are some post series</h2>
@@ -185,6 +180,20 @@
         </article>
         {% endfor %}
       </section>
+      {% endif %}
+
+      {% if LINKS %} 
+      <section id="blogroll">
+        <header class="major">
+          <h2>Blogroll</h2>
+        </header>
+
+        {% for name, link in LINKS %}
+        <li><a href="{{ link }}">{{ name }}</a></li>
+        {% endfor %}  
+      </section>
+      {% endif %}
+
         <!-- Section -->
           <section>
             <header class="major">
@@ -214,6 +223,33 @@
   <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/breakpoints.min.js"></script>
   <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/util.js"></script>
   <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/main.js"></script>
+
+  {% if (article and article.photo_gallery) or (articles_page and articles_page.object_list[0].photo_gallery) %}
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- Magnific Popup core JS file -->
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/magnific-popup.js"></script>
+<script>
+$('.gallery').magnificPopup({
+	delegate: 'a',
+	type: 'image',
+	gallery: {
+		enabled: true,
+		navigateByImgClick: true,
+		preload: [1,2]
+	},
+	image: {
+		titleSrc: function(item) {
+			if (item.el.attr('caption') && item.el.attr('exif')) {
+				return (item.el.attr('caption').replace(/\\n/g, '<br />') +
+					'<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
+			}
+		return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
+	} }
+});
+</script>
+{% endif %}
 
 </body>
 </html>

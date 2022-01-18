@@ -40,7 +40,9 @@
          title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
  {% import 'translations.html' as translations with context %}
  {{ translations.translations_for(article) }}
-     {% if article.photo_image %}<img style="max-width:100%; display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />{% endif %}
+    {% if article.photo_image %}
+    <img style="max-width:100%; display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
+    {% endif %}
 
   </header>
 
