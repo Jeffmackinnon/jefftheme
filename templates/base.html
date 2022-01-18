@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+<head>
+        {% block head %}
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}" />  
+        <meta name="generator" content="Pelican" />
+        {% if FEED_ALL_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+        {% endif %}
+        {% if FEED_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{%if FEED_ATOM_URL %}{{ FEED_ATOM_URL }}{% else %}{{ FEED_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{% if FEED_RSS_URL %}{{ FEED_RSS_URL }}{% else %}{{ FEED_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_ATOM and category %}
+        <link href="{{ FEED_DOMAIN }}/{% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=category.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=category.slug) }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_RSS and category %}
+        <link href="{{ FEED_DOMAIN }}/{% if CATEGORY_FEED_RSS_URL %}{{ CATEGORY_FEED_RSS_URL.format(slug=category.slug) }}{% else %}{{ CATEGORY_FEED_RSS.format(slug=category.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+        {% endif %}
+        {% if TAG_FEED_ATOM and tag %}
+        <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_ATOM_URL %}{{ TAG_FEED_ATOM_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_ATOM.format(slug=tag.slug) }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+        {% endif %}
+        {% if TAG_FEED_RSS and tag %}
+        <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_RSS_URL %}{{ TAG_FEED_RSS_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_RSS.format(slug=tag.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+        {% endif %}
+
+        {% endblock head %}
+  
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.jeffmackinnon.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+</head>
+
+<body class="is-preload">
+  <div id="wrapper">
+    <div id="main">
+      <div class="inner">
+
+        <!-- Header -->
+        <header id="header">
+          <strong><a href="{{ SITEURL }}/" class="logo">{{ SITENAME }}{% if SITESUBTITLE %} {{ SITESUBTITLE }}{% endif %}</a></strong>
+
+          <ul class="icons">
+            <li><a href="https://twitter.com/jeffmackinnon" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://github.com/Jeffmackinnon" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            {% if FEED_ALL_ATOM %}
+            <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" class="icon brands fa-atom"><span class="label">atom feed</span></a></li>
+            {% endif %}
+            {% if FEED_ALL_RSS %}
+            <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" class="icon brands fa-rss-square"><span class="label">rss feed</span></a></li>
+            {% endif %}  
+          </ul>
+        </header>
+
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+
+
+      </div>
+
+    </div>
+    <div id="sidebar">
+      <div class="inner">
+
+        <!-- Search --> 
+          <section id="search" class="alt">
+
+            
+
+    <iframe src="https://duckduckgo.com/search.html?site=jeffmackinnon.com&prefill=Search" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+
+
+            <!--<form class="ddg" name="x" action="//duckduckgo.com/">
+              <input type="hidden" value="jeffmackinnon.com" name="sites"></input>
+              <input type="hidden" value="1" name="kh"></input>
+              <input type="hidden" value="1" name="kn"></input>
+              <input type="hidden" value="1" name="kac"></input>
+              <input type="search" placeholder="Search" name="q"></input>
+              <button class="button" type="submit">GO</button>
+          </form>
+            <form method="post" action="#">
+              <input type="text" name="query" id="query" placeholder="Search" />
+            </form> -->
+          </section>
+        <section id="bio">
+
+          <img src="{{ SITEURL }}/images/jeffmackinnon.jpg" style="max-width: 75%; display: inline; float: center; border-radius: 50%;" />
+        </section>
+
+        <!-- Menu -->
+        <nav id="menu">
+          <header class="major">
+            <h2>Pages</h2>
+          </header>
+            <ul>
+              {% for title, link in MENUITEMS %}
+                  <li><a href="{{ link }}">{{ title }}</a></li>
+              {% endfor %}
+              {% if DISPLAY_PAGES_ON_MENU %}
+                {% for p in pages %}
+                  <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+            <br />
+            <br />
+            <header class="major">
+              <h2>Categories</h2>
+            </header>
+            
+            <ul>
+              {% if DISPLAY_CATEGORIES_ON_MENU %}
+                {% for cat, null in categories %}
+                  <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+        </nav>
+
+         <!-- Section --> <!-- No mini posts for now
+          <section>
+            <header class="major">
+              <h2>Ante interdum</h2>
+            </header>
+            <div class="mini-posts">
+              <article>
+                <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+              <article>
+                <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+              <article>
+                <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+            </div>
+            <ul class="actions">
+              <li><a href="#" class="button">More</a></li>
+            </ul>
+          </section> -->
+
+        <!-- Section - The various series -->
+        <section>
+          <header class="major">
+        <h2>Here are some post series</h2>
+      </header>
+        {% for series_name, series_articles in series.items() %}
+        {% set article = series_articles[0] %}
+        <article class="card">
+              <div class="card-body">
+              <a href="{{ SITEURL }}/{{ article.url }}"><h3 class="card-title">{{ series_name }}</h3></a>
+               <ul class="actions">
+                 <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">Start</a></li>
+               </ul>
+          </div>
+        </article>
+        {% endfor %}
+      </section>
+        <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Get in touch</h2>
+            </header>
+            <p>I will add some contact information on here eventuall, but for now, NOPE</p>
+            <ul class="contact">
+              <li class="icon solid fa-home">Halifax, NS</li>
+            </ul>
+          </section>
+
+        <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">&copy; Untitled. All rights reserved. Original design: <a href="https://html5up.net">HTML5 UP</a>. <br />
+            Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>. <br /> 
+            Modifed by <a href="https://jeffmackinnon.com/i-built-a-pelican-theme.html">Jeff MacKinnon</a></p>
+          </footer>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
+  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/browser.min.js"></script>
+  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/breakpoints.min.js"></script>
+  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/util.js"></script>
+  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/main.js"></script>
+
+</body>
+</html>
