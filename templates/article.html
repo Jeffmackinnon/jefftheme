@@ -11,10 +11,6 @@
     {{ translations.entry_hreflang(article) }}
   {% endif %}
 
-  {% if article.description %}
-    <meta name="description" content="{{ article.description }}" />
-  {% endif %}
-
   {% for tag in article.tags %}
     <meta name="tags" content="{{ tag }}" />
   {% endfor %}
@@ -25,7 +21,12 @@
   {% endif %}
 
   <!-- Twitter Card Things-->
+  {% if article.photo_image %}
+  <meta name="twitter:card" content="summary_large_image" />
+  {% else %}
   <meta name="twitter:card" content="summary" />
+  {% endif %}
+
   {% if SOCIAL_TWIITER %}
   <meta name="twitter:site" content="@{{ SOCIAL_TWIITER }}" />
   {% endif %}
@@ -33,7 +34,7 @@
   {% if article.summary %}
   <meta name="twitter:description" content="{{ article.summary|striptags }}" />
   {% else %}
-  <meta name="twitter:description" content="Read the full post on The Digital Cat" />
+  <meta name="twitter:description" content="Read the full post at jeffmackinnon.com" />
   {% endif %}
   {% if article.photo_image %}
   <meta name="twitter:image" content="{{ SITEURL }}/{{ article.photo_image[1] }}" />
