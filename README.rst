@@ -2,7 +2,7 @@
 theme-jeffmackinnon.com
 =======================
 
-The base pelican theme for my site, jeffmackinnon.com
+The base pelican theme for my site, `jeffmackinnon.com <https://jeffmackinnon.com>`__
 
 There are some variables that you can add to the ``pelicanconf.py`` file that make things look good.
 
