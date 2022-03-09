@@ -25,5 +25,7 @@ There are some variables that you can add to the pelicanconf.py file that make t
     ## Contact information for the footer
     CONTACT_PHONE_NUM = ''
     CONTACT_EMAIL = ''
-    CONTACT_HOME_ADDR = 'Halifax, NS'
+    CONTACT_HOME_ADDR = ''
     CONTACT_BUSINESS_ADDR =''
+
+You can copy the entire thing into your ``pelicanconf.py`` file and make the changes for your site. 
