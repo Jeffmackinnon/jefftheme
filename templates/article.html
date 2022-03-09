@@ -62,16 +62,37 @@
          title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
  {% import 'translations.html' as translations with context %}
  {{ translations.translations_for(article) }}
+Published: <time class="published" datetime="{{ article.date.isoformat() }}">
+  {{ article.locale_date }}
+</time>
+{% if article.modified %}
+<br />Updated: <time class="modified" datetime="{{ article.modified.isoformat() }}">
+  {{ article.locale_modified }}
+</time>
+{% endif %}
+{% if article.authors %}
+<address class="vcard author">
+  By {% for author in article.authors %}
+      <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+    {% endfor %}
+</address><br />
+{% endif %}
+<p class="share">Share this article on: 
+  <span><a class="" href="https://twitter.com/intent/tweet?text={{ article.title|striptags }}&url={{ SITEURL }}/{{ article.url }}{% if SOCIAL_TWITTER %}&via={{ SOCIAL_TWITTER }}{% endif %}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i> Twitter</a></span>
+  <span><a class="" href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Linkedin"><i class="icon brands fa-linkedin"></i> Linkedin</a></span>
+  <span><a class="" href="mailto:?subject={{ article.title|striptags }}&body={{ article.summary|striptags }} - {{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Email"><i class="fas fa-envelope"></i> Email</a></span>
+</p>
+
+
     {% if article.photo_image %}
-    <img style="max-width:100%; display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
+    <img style="max-width:90%; display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
+    <br /><br />
     {% endif %}
 
-  </header>
-
+  </header>    
     <div class="entry-content">
-    <br /><br />
     {{ article.content }}
-
+    {% if article.photo_gallery %}
     <div class="gallery"> <br /><br />
       {% for title, gallery in article.photo_gallery %}
         <h2>{{ title }}</h2>
@@ -80,9 +101,12 @@
           {% endfor %}
       {% endfor %}
     </div>
+    
+    {% endif %}
+    {% if article.series %}
     <div class="post series">
     <br /><br />
-    {% if article.series %}
+    
     <p>This post is part {{ article.series.index }} of the "{{ article.series.name }}" series:</p>
     <ol class="parts">
         {% for part_article in article.series.all %}
@@ -91,25 +115,13 @@
             </li>
         {% endfor %}
     </ol>
-      {% endif %}
+      
     </div>
+    {% endif %}
+
+
 
     <footer class="post-info">
-      Published: <time class="published" datetime="{{ article.date.isoformat() }}">
-        {{ article.locale_date }}
-      </time>
-      {% if article.modified %}
-      <br />Updated: <time class="modified" datetime="{{ article.modified.isoformat() }}">
-        {{ article.locale_modified }}
-      </time>
-      {% endif %}
-      {% if article.authors %}
-      <address class="vcard author">
-        By {% for author in article.authors %}
-            <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-          {% endfor %}
-      </address><br />
-      {% endif %}
       {% if article.category %}
       <div class="category">
           Category: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>

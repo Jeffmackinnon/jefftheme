@@ -34,26 +34,23 @@
 {% if TAG_FEED_RSS and tag %}
   <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_RSS_URL %}{{ TAG_FEED_RSS_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_RSS.format(slug=tag.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
 {% endif %}
-
-
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setDoNotTrack", true]);
-  _paq.push(["disableCookies"]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//stats.jeffmackinnon.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '2']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
-
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["setDoNotTrack", true]);
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.jeffmackinnon.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '2']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
 {% endblock head %}
 </head>
 
@@ -67,17 +64,23 @@
           <strong><a href="{{ SITEURL }}/" class="logo">{{ SITENAME }}{% if SITESUBTITLE %} {{ SITESUBTITLE }}{% endif %}</a></strong>
 
           <ul class="icons">
-            {% if SOCIAL_TWIITER %}
-              <li><a href="https://twitter.com/{{ SOCIAL_TWIITER }}" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            {% if SOCIAL_TWITTER %}
+              <li><a href="https://twitter.com/{{ SOCIAL_TWITTER }}" class="icon brands fa-twitter" target="_blank" rel="noopener noreferrer"><span class="label">Twitter</span></a></li>
+            {% endif %}
+            {% if SOCIAL_FLICKR %}
+              <li><a href="https://www.flickr.com/photos/{{ SOCIAL_FLICKR }}" class="icon brands fa-flickr" target="_blank" rel="noopener noreferrer"><span class="label">Flickr</span></a></li>
             {% endif %}
             {% if SOCIAL_GITHUB %}
-              <li><a href="https://github.com/{{ SOCIAL_GITHUB }}" class="icon brands fa-github"><span class="label">Github</span></a></li>
+              <li><a href="https://github.com/{{ SOCIAL_GITHUB }}" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">Github</span></a></li>
+            {% endif %}
+            {% if SOCIAL_LINKEDIN %}
+              <li><a href="https://www.linkedin.com/in/{{ SOCIAL_LINKEDIN }}" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
             {% endif %}
             {% if FEED_ALL_ATOM %}
             <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" class="icon brands fa-atom"><span class="label">atom feed</span></a></li>
             {% endif %}
             {% if FEED_ALL_RSS %}
-            <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" class="icon brands fa-rss-square"><span class="label">rss feed</span></a></li>
+            <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" class="icon brands fa-rss"><span class="label">rss feed</span></a></li>
             {% endif %}  
           </ul>
         </header>
@@ -159,59 +162,63 @@
               <li><a href="#" class="button">More</a></li>
             </ul>
           </section> -->
+       
+        {% if LINKS %} 
+        <section id="blogroll">
+          <header class="major">
+            <h2>Blogroll</h2>
+          </header>
+          {% for name, link in LINKS %}
+          <li><a href="{{ link }}">{{ name }}</a></li>
+          {% endfor %}  
+        </section>
+        {% endif %}
 
         <!-- Section - The various series -->
-        {% if series_name %}
+        <section id="article-series">
+          <header class="major">
+            <h2>Here are some post series</h2>
+          </header>
+          {% for series_name, series_articles in series.items() %}
+          {% set article = series_articles[0] %}
+          <article class="card">
+            <div class="card-body">
+            <a href="{{ SITEURL }}/{{ article.url }}"><h3 class="card-title">{{ series_name }}</h3></a>
+              <ul class="actions">
+                <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">Start</a></li>
+              </ul>
+            </div>
+          </article>
+          {% endfor %}
+        </section>
+
+        {% if CONTACT_EMAIL or CONTACT_PHONE_NUM or CONTACT_HOME_ADDR %}
         <section>
           <header class="major">
-        <h2>Here are some post series</h2>
-      </header>
-        {% for series_name, series_articles in series.items() %}
-        {% set article = series_articles[0] %}
-        <article class="card">
-              <div class="card-body">
-              <a href="{{ SITEURL }}/{{ article.url }}"><h3 class="card-title">{{ series_name }}</h3></a>
-               <ul class="actions">
-                 <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">Start</a></li>
-               </ul>
-          </div>
-        </article>
-        {% endfor %}
-      </section>
-      {% endif %}
-
-      {% if LINKS %} 
-      <section id="blogroll">
-        <header class="major">
-          <h2>Blogroll</h2>
-        </header>
-
-        {% for name, link in LINKS %}
-        <li><a href="{{ link }}">{{ name }}</a></li>
-        {% endfor %}  
-      </section>
-      {% endif %}
-
-        <!-- Section -->
-          <section>
-            <header class="major">
-              <h2>Get in touch</h2>
-            </header>
-            <p>I will add some contact information on here eventuall, but for now, NOPE</p>
-            <ul class="contact">
-              <li class="icon solid fa-home">Halifax, NS</li>
-            </ul>
-          </section>
+            <h2>Get in touch</h2>
+          </header>
+          <ul class="contact">
+          {% if CONTACT_EMAIL %}
+            <li class="icon sold fa-envelope">{{ CONTACT_EMAIL }}</li>
+          {% endif %}
+          {% if CONTACT_PHONE_NUM %}
+            <li class="icon solid fa-phone">{{ CONTACT_PHONE_NUM }}</li>
+          {% endif %}
+          {% if CONTACT_HOME_ADDR %}
+            <li class="icon solid fa-home">{{ CONTACT_HOME_ADDR }}</li>
+          {% endif %}
+          </ul>
+        </section>
+        {% endif %}
 
         <!-- Footer -->
-          <footer id="footer">
-            <p class="copyright">&copy; Untitled. All rights reserved. Original design: <a href="https://html5up.net">HTML5 UP</a>. <br />
+        <footer id="footer">
+          <p class="copyright">&copy; Untitled. All rights reserved. Original design: <a href="https://html5up.net">HTML5 UP</a>. <br />
             Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>. <br /> 
             Modifed by <a href="https://jeffmackinnon.com/i-built-a-pelican-theme.html">Jeff MacKinnon</a></p>
-          </footer>
+        </footer>
 
       </div>
-
     </div>
   </div>
 
@@ -223,31 +230,30 @@
   <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/main.js"></script>
 
   {% if (article and article.photo_gallery) or (articles_page and articles_page.object_list[0].photo_gallery) %}
-<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<!-- Magnific Popup core JS file -->
-<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/magnific-popup.js"></script>
-<script>
-$('.gallery').magnificPopup({
-	delegate: 'a',
-	type: 'image',
-	gallery: {
-		enabled: true,
-		navigateByImgClick: true,
-		preload: [1,2]
-	},
+  <!-- Magnific Popup core JS file -->
+  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/magnific-popup.js"></script>
+  <script>
+    $('.gallery').magnificPopup({
+  	delegate: 'a',
+  	type: 'image',
+  	gallery: {
+  		enabled: true,
+  		navigateByImgClick: true,
+  		preload: [1,2]
+  	},
 	image: {
 		titleSrc: function(item) {
 			if (item.el.attr('caption') && item.el.attr('exif')) {
 				return (item.el.attr('caption').replace(/\\n/g, '<br />') +
 					'<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
 			}
-		return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
-	} }
-});
-</script>
-{% endif %}
-
+  		return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
+  	} }
+  });
+  </script>
+  {% endif %}
 </body>
 </html>
