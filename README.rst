@@ -7,10 +7,11 @@ The base pelican theme for my site, jeffmackinnon.com
 There are some variables that you can add to the pelicanconf.py file that make things look good.
 
 .. code:: python
+    
     #
     # JeffTheme variables
     #
-    
+
     ## The search things
     DUCKDUCKGOSEARCHURL = '' # The URL of your site
     ## Sidebar things
