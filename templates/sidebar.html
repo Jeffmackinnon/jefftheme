@@ -1,0 +1,126 @@
+<div id="sidebar">
+    <div class="inner">
+
+      <!-- Search -->
+      {% if DUCKDUCKGOSEARCHURL %} 
+      <section id="search" class="alt">            
+        <iframe src="https://duckduckgo.com/search.html?site={{ DUCKDUCKGOSEARCHURL }}&prefill=Search" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+      </section>
+      {% endif %} 
+      {% if BIO_IMAGE %}
+      <section id="bio">
+        <img src="{{ SITEURL }}/images/{{ BIO_IMAGE }}" style="max-width: 75%; display: inline; float: center; border-radius: 50%;" />
+      </section>
+      {% endif %}
+
+      <!-- Menu -->
+      <nav id="menu">
+        <header class="major">
+          <h2>Pages</h2>
+        </header>
+          <ul>
+            {% for title, link in MENUITEMS %}
+                <li><a href="{{ link }}">{{ title }}</a></li>
+            {% endfor %}
+            {% if DISPLAY_PAGES_ON_MENU %}
+              {% for p in pages %}
+                <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+          <br />
+          <br />
+          <header class="major">
+            <h2>Categories</h2>
+          </header>
+          
+          <ul>
+            {% if DISPLAY_CATEGORIES_ON_MENU %}
+              {% for cat, null in categories %}
+                <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+      </nav>
+
+       <!-- Section --> <!-- No mini posts for now
+        <section>
+          <header class="major">
+            <h2>Ante interdum</h2>
+          </header>
+          <div class="mini-posts">
+            <article>
+              <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+              <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+            </article>
+            <article>
+              <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+              <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+            </article>
+            <article>
+              <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+              <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+            </article>
+          </div>
+          <ul class="actions">
+            <li><a href="#" class="button">More</a></li>
+          </ul>
+        </section> -->
+     
+      {% if LINKS %} 
+      <section id="blogroll">
+        <header class="major">
+          <h2>Blogroll</h2>
+        </header>
+        {% for name, link in LINKS %}
+        <li><a href="{{ link }}">{{ name }}</a></li>
+        {% endfor %}  
+      </section>
+      {% endif %}
+
+      <!-- Section - The various series -->
+      <section id="article-series">
+        <header class="major">
+          <h2>Here are some post series</h2>
+        </header>
+        {% for series_name, series_articles in series.items() %}
+        {% set article = series_articles[0] %}
+        <article class="card">
+          <div class="card-body">
+          <a href="{{ SITEURL }}/{{ article.url }}"><h3 class="card-title">{{ series_name }}</h3></a>
+            <ul class="actions">
+              <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">Start</a></li>
+            </ul>
+          </div>
+        </article>
+        {% endfor %}
+      </section>
+
+      {% if CONTACT_EMAIL or CONTACT_PHONE_NUM or CONTACT_HOME_ADDR %}
+      <section>
+        <header class="major">
+          <h2>Get in touch</h2>
+        </header>
+        <ul class="contact">
+        {% if CONTACT_EMAIL %}
+          <li class="icon sold fa-envelope">{{ CONTACT_EMAIL }}</li>
+        {% endif %}
+        {% if CONTACT_PHONE_NUM %}
+          <li class="icon solid fa-phone">{{ CONTACT_PHONE_NUM }}</li>
+        {% endif %}
+        {% if CONTACT_HOME_ADDR %}
+          <li class="icon solid fa-home">{{ CONTACT_HOME_ADDR }}</li>
+        {% endif %}
+        </ul>
+      </section>
+      {% endif %}
+
+      <!-- Footer -->
+      <footer id="footer">
+        <p class="copyright">&copy; Untitled. All rights reserved. Original design: <a href="https://html5up.net">HTML5 UP</a>. <br />
+          Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>. <br /> 
+          Modifed by <a href="https://jeffmackinnon.com/i-built-a-pelican-theme.html">Jeff MacKinnon</a></p>
+      </footer>
+
+    </div>
+  </div>
