@@ -13,17 +13,25 @@
 
   
 {% endblock %}
-
+<section id="content" class="body">
 {% block content %}
+  <header>
     <h1>{{ page.title }}</h1>
+
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(page) }}
+
+
+  </header>
+  <div>
 
     {{ page.content }}
 
     {% if page.modified %}
-        <p>
-        Last updated: {{ page.locale_modified }}
-        </p>
+    <footer>    
+      <p>Last updated: {{ page.locale_modified }}</p>
+    </footer>
     {% endif %}
+  </div>
+</section>
 {% endblock %}
