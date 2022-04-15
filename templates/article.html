@@ -77,11 +77,18 @@ Published: <time class="published" datetime="{{ article.date.isoformat() }}">
     {% endfor %}
 </address><br />
 {% endif %}
+
+{% if SOCIAL_SHARE is sameas true %}
 <p class="share">Share this article on: 
   <span><a class="" href="https://twitter.com/intent/tweet?text={{ article.title|striptags }}&url={{ SITEURL }}/{{ article.url }}{% if SOCIAL_TWITTER %}&via={{ SOCIAL_TWITTER }}{% endif %}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i> Twitter</a></span>
   <span><a class="" href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Linkedin"><i class="icon brands fa-linkedin"></i> Linkedin</a></span>
   <span><a class="" href="mailto:?subject={{ article.title|striptags }}&body={{ article.summary|striptags }} - {{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Email"><i class="fas fa-envelope"></i> Email</a></span>
 </p>
+{% else %}
+{% endif %}
+
+
+
 
 
     {% if article.photo_image %}
