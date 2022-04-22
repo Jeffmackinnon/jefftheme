@@ -1,8 +1,69 @@
 
 
+/* books */
+
+.book {
+  display: flex;
+  justify-content: center;
+  margin: .25em;
+  position: relative;
+  text-transform: initial;
+  transition: transform .05s;
+  width: 100px;
+  z-index: 1;
+}
+
+.book .book__back {
+  background-color: black;
+  bottom: 0;
+  color: white;
+  font-size: 8px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 .5em;
+  position: absolute;
+  text-transform: none;
+}
+
+.book:focus .book__back {
+  display: flex;
+}
+
+.book:hover, book:focus {
+  transform: scale(1.4);
+  z-index: 1000;
+}
+
+/* progress bar */
+
+.progress {
+  background-color: white;
+  border: 2px solid var(--base-dark);
+  border-radius: 3px;
+  height: 14px;
+  margin: .5em auto;
+  position: absolute;
+  top: 38%;
+  width: 106%;
+  z-index: 1;
+}
+
+.progress__bar50 {
+  background-color: var(--base-green);
+  border-right: 2px solid var(--base-dark);
+  height: 10px;
+  width: 50%;
+}
+
+.progress__bar.progress__bar--dnf {
+  background-color: var(--base-yellow);
+} 
 
 
-
+.postlist-link {
+  text-decoration: none;
+}
 
 
 
