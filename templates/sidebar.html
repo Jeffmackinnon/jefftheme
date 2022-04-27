@@ -107,6 +107,18 @@
         {% endfor %}
       </section>
 
+      {% if WEBRING_FEED_URLS %}
+      <section>
+            <div class="webring">
+                <h2>Webring</h2>
+                {% for article in webring_articles %}
+                <p><a href="{{ article.link }}">{{ article.title }}</a></p>
+                <p>{{ article.date|strftime('%d %B %Y') }}<!-- - {{ article.summary}}--></p>
+                {% endfor %}
+            </div>
+        {% endif %}
+      </section>
+
       {% if CONTACT_EMAIL or CONTACT_PHONE_NUM or CONTACT_HOME_ADDR %}
       <section>
         <header class="major">
