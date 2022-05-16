@@ -13,6 +13,14 @@
 
   
 {% endblock %}
+
+{% block somemorehead %}
+  {% if page.libary %}
+  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/library.css">
+  {% endif %}
+
+{% endblock somemorehead %}
+
 <section id="content" class="body">
 {% block content %}
   <header>
