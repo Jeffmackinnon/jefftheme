@@ -1,7 +1,13 @@
 .wip {
+    width: 150px;
     opacity: 75%;
     border: 5px solid #d11586
 }
+.read {
+    width: 150px;
+}
 .dnf {
-    opacity: 25%;
+    width: 150px;
+    opacity: 75%;
+    filter: grayscale(100%);
 }
