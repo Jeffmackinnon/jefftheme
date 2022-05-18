@@ -15,8 +15,8 @@
 {% endblock %}
 
 {% block somemorehead %}
-  {% if page.libary %}
-  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/library.css">
+  {% if page.specialcss %}
+  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ page.specialcss }}">
   {% endif %}
 
 {% endblock somemorehead %}
