@@ -89,6 +89,7 @@
       </section>
       {% endif %}
 
+      {% if series.items() %}
       <!-- Section - The various series -->
       <section id="article-series">
         <header class="major">
@@ -106,6 +107,7 @@
         </article>
         {% endfor %}
       </section>
+      {% endif %}
 
       {% if WEBRING_FEED_URLS %}
       <section>
