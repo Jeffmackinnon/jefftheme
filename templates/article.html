@@ -51,83 +51,65 @@
   {% endif %}  
   <meta property="og:description" content="{{ article.summary|striptags }}" />
 
-
 {% endblock %}
 
 {% block content %}
 <section id="content" class="body">
   <header>
     <h1 class="entry-title">
-      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
- {% import 'translations.html' as translations with context %}
- {{ translations.translations_for(article) }}
-Published: <time class="published" datetime="{{ article.date.isoformat() }}">
-  {{ article.locale_date }}
-</time>
-{% if article.modified %}
-<br />Updated: <time class="modified" datetime="{{ article.modified.isoformat() }}">
-  {{ article.locale_modified }}
-</time>
-{% endif %}
-{% if article.authors %}
-<address class="vcard author">
-  By {% for author in article.authors %}
+      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
+  {% import 'translations.html' as translations with context %}
+  {{ translations.translations_for(article) }}
+    Published: <time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+  {% if article.modified %}
+    <br />Updated: <time class="modified" datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified }}</time>
+  {% endif %}
+  {% if article.authors %}
+    <address class="vcard author">By {% for author in article.authors %}
       <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
     {% endfor %}
-</address><br />
-{% endif %}
+    </address><br />
+  {% endif %}
 
-{% if SOCIAL_SHARE is sameas true %}
-<p class="share">Share this article on: 
-  <span><a class="" href="https://twitter.com/intent/tweet?text={{ article.title|striptags }}&url={{ SITEURL }}/{{ article.url }}{% if SOCIAL_TWITTER %}&via={{ SOCIAL_TWITTER }}{% endif %}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i> Twitter</a></span>
-  <span><a class="" href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Linkedin"><i class="icon brands fa-linkedin"></i> Linkedin</a></span>
-  <span><a class="" href="mailto:?subject={{ article.title|striptags }}&body={{ article.summary|striptags }} - {{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Email"><i class="fas fa-envelope"></i> Email</a></span>
-</p>
-{% else %}
-{% endif %}
-
-
-
-
+    {% if SOCIAL_SHARE is sameas true %}
+    <p class="share">Share this article on: 
+      <span><a class="" href="https://twitter.com/intent/tweet?text={{ article.title|striptags }}&url={{ SITEURL }}/{{ article.url }}{% if SOCIAL_TWITTER %}&via={{ SOCIAL_TWITTER }}{% endif %}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i> Twitter</a></span>
+      <span><a class="" href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Linkedin"><i class="icon brands fa-linkedin"></i> Linkedin</a></span>
+      <span><a class="" href="mailto:?subject={{ article.title|striptags }}&body={{ article.summary|striptags }} - {{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Email"><i class="fas fa-envelope"></i> Email</a></span>
+    </p>
+    {% else %}
+    {% endif %}
 
     {% if article.photo_image %}
     <img style="max-width:90%; display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
     <br /><br />
     {% endif %}
-
   </header>    
-    <div class="entry-content">
-    {{ article.content }}
+  <div class="entry-content">
+  {{ article.content }}
     {% if article.photo_gallery %}
     <div class="gallery"> <br /><br />
-      {% for title, gallery in article.photo_gallery %}
-        <h2>{{ title }}</h2>
-          {% for name, photo, thumb, exif, caption in gallery %}
-              <a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
-          {% endfor %}
-      {% endfor %}
+    {% for title, gallery in article.photo_gallery %}
+      <h2>{{ title }}</h2>
+        {% for name, photo, thumb, exif, caption in gallery %}
+        <a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
+        {% endfor %}
+    {% endfor %}
     </div>
-    
     {% endif %}
     {% if article.series %}
     <div class="post series">
-    <br /><br />
-    
-    <p>This post is part {{ article.series.index }} of the "{{ article.series.name }}" series:</p>
-    <ol class="parts">
+      <br /><br />
+      <p>This post is part {{ article.series.index }} of the "{{ article.series.name }}" series:</p>
+      <ol class="parts">
         {% for part_article in article.series.all %}
-            <li {% if part_article == article %}class="active"{% endif %}>
-                <a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
-            </li>
+        <li {% if part_article == article %}class="active"{% endif %}>
+          <a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
+        </li>
         {% endfor %}
-    </ol>
-      
+      </ol>      
     </div>
     {% endif %}
-
-
-
     <footer class="post-info">
       {% if article.category %}
       <div class="category">
@@ -143,13 +125,13 @@ Published: <time class="published" datetime="{{ article.date.isoformat() }}">
       </div>
       {% endif %}
     </footer><!-- /.post-info -->
-    
     {% if MASTODON_COMMENTS is sameas True %}
+    <div class="mastodon-comments">
       <br />
       <p><strong><a href="{{ SITEURL }}/mastodon-comments/bot.php?title={{ article.title|striptags }}&url={{ SITEURL }}/{{ article.url }}{% if article.photo_image %}&image=../{{ article.photo_image[1] }}{% endif %}">Click Here to Comment on Mastodon.</a></strong></p>
       <p>If its your first time commenting, <a href="https://jeffmackinnon.com/commenting-on-blog-with-mastodon.html">click here</a> to figure it out.</p>
-    {% endif %}
-  
+    </div>
+      {% endif %}
   </div><!-- /.entry-content -->
 </section>
 {% endblock %}
