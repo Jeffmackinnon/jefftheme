@@ -38,8 +38,9 @@
 {% if TAG_FEED_RSS and tag %}
   <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_RSS_URL %}{{ TAG_FEED_RSS_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_RSS.format(slug=tag.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
 {% endif %}
+{% if TRACKING %}
   <!-- Matomo -->
-  <script>
+    <script>
     var _paq = window._paq = window._paq || [];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     _paq.push(["setDoNotTrack", true]);
@@ -55,6 +56,8 @@
     })();
   </script>
   <!-- End Matomo Code -->
+{% endif %}
+
 {% endblock head %}
 {% block somemorehead %}
 {% endblock somemorehead %}
