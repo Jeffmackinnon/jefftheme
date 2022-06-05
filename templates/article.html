@@ -55,20 +55,26 @@
 {% block content %}
   <section id="content" class="body">
     <header>
-      <h1 class="entry-title">
-        <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
-    {% import 'translations.html' as translations with context %}
-    {{ translations.translations_for(article) }}
-      Published: <time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-    {% if article.modified %}
-      <br />Updated: <time class="modified" datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified }}</time>
-    {% endif %}
-    {% if article.authors %}
-      <address class="vcard author">By {% for author in article.authors %}
-        <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+      <h1 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
+      {% if article.photo_image %}
+      <img style="display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
+      {% endif %}
+
+
+    </header>
+    <div id="entry-info">
+      {% import 'translations.html' as translations with context %}
+      {{ translations.translations_for(article) }}
+      <p class="pentry">Published: <time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></p>
+      {% if article.modified %}
+      <p class="pentry">Updated: <time class="modified" datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified }}</time></p>
+      {% endif %}
+      {% if article.authors %}
+      <p class="pentry"><address class="vcard author">By {% for author in article.authors %}
+        <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> 
       {% endfor %}
-      </address><br />
-    {% endif %}
+      </address></p>
+      {% endif %}
 
       {% if SOCIAL_SHARE is sameas true %}
       <p class="share">Share this article on: 
@@ -76,14 +82,8 @@
         <span><a class="" href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Linkedin"><i class="icon brands fa-linkedin"></i> Linkedin</a></span>
         <span><a class="" href="mailto:?subject={{ article.title|striptags }}&body={{ article.summary|striptags }} - {{ SITEURL }}/{{ article.url }}" target="_blank" title="Share via Email"><i class="fas fa-envelope"></i> Email</a></span>
       </p>
-      {% else %}
       {% endif %}
-
-      {% if article.photo_image %}
-      <img style="max-width:90%; display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
-      <br /><br />
-      {% endif %}
-    </header>    
+    </div>
     <div class="entry-content">
     {{ article.content }}
       {% if article.photo_gallery %}
@@ -91,9 +91,9 @@
       {% for title, gallery in article.photo_gallery %}
       <h2>{{ title }}</h2>
           <section class="photo_gallery"> 
-          <ol class="bookshelf">
+          <ol class="photo_gallery">
           {% for name, photo, thumb, exif, caption in gallery %}
-            <li class="book postlist-item"><a href="{{ SITEURL }}/{{ photo }}" target="_blank"  title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a></li>
+            <li class="photo gallery-item"><a href="{{ SITEURL }}/{{ photo }}" target="_blank"  title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a></li>
           {% endfor %}
         </ol></section>
       {% endfor %}

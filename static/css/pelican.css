@@ -30,7 +30,7 @@ ol {
 
 /* main */
 
-.tmpl-library .bookshelf {
+.tmpl-library .photo_gallery {
     border: 1px solid var(--base-dark);
     margin: 0 auto;
     padding: 1em;
@@ -54,8 +54,10 @@ ol {
 }
 /************************************************/
 
+
+
 /************************************************/
-/* LIBRARY TEMPLATE                             */
+/* Gallery TEMPLATE                             */
 
 /* "sourced" aka copied from - https://www.pagemelt.ink/published/ */
 /* I have probably made enough changes that is it now "inspired by", but where is that lie really? */
@@ -66,9 +68,20 @@ ol {
     overflow-x: hidden;
 }
 
-/* books */
+.photo_gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    /*margin: .25em 0 0 0; */
+    padding-left: 0;
+    width: 100%;
+    border: 1px;
+    }
+    
 
-.book {
+/* photos */
+
+.photo {
     display: flex;
     justify-content: center;
     margin: .1em;
@@ -80,87 +93,86 @@ ol {
 }
 
 @media screen and (max-width: 900px) {
-.postlist-home li.book:nth-of-type(7n) {
+.gallery-home li.photo:nth-of-type(7n) {
     display: none;
 }
 }
 
 @media screen and (max-width: 800px) {
-.postlist-home li.book:nth-of-type(6n) {
+.gallery-home li.photo:nth-of-type(6n) {
     display: none;
 }
 }
 
 @media screen and (max-width: 710px) {
-.postlist-home li.book:nth-of-type(5n) {
+.gallery-home li.photo:nth-of-type(5n) {
     display: none;
 }
 }
 
 @media screen and (max-width: 600px) {
-.postlist-home li.book:nth-of-type(4n) {
+.gallery-home li.photo:nth-of-type(4n) {
     display: none;
 }
 }
 
-.book .book__back {
-background-color: black;
-bottom: 0;
-color: white;
-font-size: 8px;
-display: none;
-flex-direction: column;
-justify-content: flex-end;
-padding: 0 .5em;
-position: absolute;
-text-transform: none;
-}
-
-.book:focus .book__back {
+.photo:focus .photo__back {
 display: flex;
 }
 
-.book:hover, book:focus {
+.photo:hover, photo:focus {
 transform: scale(1.4);
 z-index: 1000;
 }
 
-.footer .book:hover, book:focus {
+.footer .photo:hover, photo:focus {
 transform: scale(2);
 }
 
 @media screen and (max-width: 800px) {
-.book:hover, book:focus {
+.photo:hover, photo:focus {
     transform: scale(1.5);
 }
 }
 
 @media screen and (max-width: 800px) {
-.book.book--widescreen {
+.photo.photo--widescreen {
     display: none;
 }
 }
 
 @media screen and (max-width: 650px) {
-.book.book--midscreen {
+.photo.photo--midscreen {
     display: none;
     width: 400px;
 
 }
 }
 
-.bookshelf {
-display: flex;
-flex-wrap: wrap;
-justify-content: right;
-/*margin: .25em 0 0 0; */
-padding-left: 0;
-width: 100%;
-border: 1px;
+.photo:hover .photo__image {
+box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 
-.book:hover .book__image {
-box-shadow: 0 0 10px rgba(0,0,0,.5);
+/************************************************/
+
+
+/* Article/Entry Info */
+#entry-info {
+    margin: 0 0 2em 0;
+    border-bottom: solid 5px #f56a6a;
+    padding: 1em 0 0 0;
+    position: relative;
+}
+VB 
+.pentry {
+    margin: 0 0 0 0;
+}
+/************************************************/
+
+/* Special Classes */
+
+.share {
+    margin: 1em 0 1em 0;
 }
 
 /************************************************/
