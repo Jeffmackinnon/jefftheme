@@ -7,7 +7,7 @@
 <div class="posts">
     {% for article in articles_page.object_list %}
             <article>
-                <header> <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2> </header>
+                <header> <h2 id="indexheader"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2> </header>
 
                         {% if article.photo_image %}
                             <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.photo_image[1] }}" style="max-width: 100%; display: inline; float: center;" /></a>

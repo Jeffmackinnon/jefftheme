@@ -2280,4 +2280,8 @@ button,
     padding-top: 0; }
 
 
-
+/* index header size */
+#indexheader {
+  min-height: 80px;
+  vertical-align:bottom;
+}
