@@ -25,10 +25,10 @@ ol {
 .post st-link {
     text-decoration: none;
 }
+
+
 /************************************************/
-
-
-/* main */
+/* main                                         */
 
 .tmpl-library .photo_gallery {
     border: 1px solid var(--base-dark);
@@ -39,6 +39,7 @@ ol {
 
 /************************************************/
 /* This is the stuff for my reading library     */
+
 .wip {
     width: 150px;
     opacity: 75%;
@@ -52,8 +53,6 @@ ol {
     opacity: 75%;
     filter: grayscale(100%);
 }
-/************************************************/
-
 
 
 /************************************************/
@@ -61,7 +60,6 @@ ol {
 
 /* "sourced" aka copied from - https://www.pagemelt.ink/published/ */
 /* I have probably made enough changes that is it now "inspired by", but where is that lie really? */
-
 
 .tmpl-library {
     margin: 0 auto;
@@ -77,9 +75,10 @@ ol {
     width: 100%;
     border: 1px;
     }
-    
 
-/* photos */
+
+/************************************************/
+/* photos                                       */
 
 .photo {
     display: flex;
@@ -153,13 +152,13 @@ transform: scale(2);
 box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 
+
 /************************************************/
+/* Article/Entry Info                           */
 
-
-/* Article/Entry Info */
 #entry-info {
     margin: 0 0 2em 0;
-    border-bottom: solid 5px #f56a6a;
+    border-bottom: solid 5px var(--style-colour);
     padding: 1em 0 0 0;
     position: relative;
 }
@@ -167,12 +166,37 @@ VB
 .pentry {
     margin: 0 0 0 0;
 }
-/************************************************/
 
-/* Special Classes */
+
+/************************************************/
+/* Special Classes                              */
 
 .share {
     margin: 1em 0 1em 0;
+}
+
+
+/************************************************/
+/* Post Series Styling                          */
+
+.post-series p {
+    color: var(--header-colour);
+    font-family: "Roboto Slab", serif;
+    font-weight: 700;
+    font-size: 1.5em;
+    text-decoration: underline;     
+    margin-top: 1em;
+    margin-bottom: -0.5em;
+}
+
+.parts {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
 }
 
 /************************************************/

@@ -12,20 +12,24 @@
                         {% if article.photo_image %}
                             <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.photo_image[1] }}" style="max-width: 100%; display: inline; float: center;" /></a>
                         {% endif %}
-                    <footer class="post-info">
+                        {% if (article.category != MICROBLOG ) %}
+                    <!--<footer class="post-info">
                         <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time> 
-                    </footer><!-- /.post-info -->                        
+                    </footer> -->
+                    
+                    <!-- /.post-info -->                        
                         <div class="entry-content"> {{ article.summary }} </div>
                         {% if article.category %}
                         <div class="category">
                             Posted in: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
                         </div>
-                        {% endif %}
+                        {% endif %} <!--
                         <ul class="actions">
                             <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">More</a></li>
-                        </ul>
+                        </ul> -->
                     <!-- /.entry-content -->
-            </article>
+                    {% endif %}
+            </article> 
     {% endfor %}
 <!-- /#posts-list -->
 </div>

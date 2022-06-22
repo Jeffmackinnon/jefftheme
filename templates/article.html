@@ -57,7 +57,7 @@
     <header>
       <h1 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
       {% if article.photo_image %}
-      <img style="display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" />
+      <a href="{{ SITEURL }}/{{ article.photo_image[1] }}"><img style="display: block; margin: 0px auto;" src="{{ SITEURL }}/{{ article.photo_image[1] }}" /></a>
       {% endif %}
 
 
@@ -100,8 +100,7 @@
           
       {% endif %}
       {% if article.series %}
-      <div class="post series">
-        <br /><br />
+      <div class="post-series">
         <p>This post is part {{ article.series.index }} of the "{{ article.series.name }}" series:</p>
         <ol class="parts">
           {% for part_article in article.series.all %}
