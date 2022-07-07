@@ -2,12 +2,13 @@
 theme-jeffmackinnon.com
 =======================
 
+
 The base pelican theme for my site, `jeffmackinnon.com <https://jeffmackinnon.com>`__
 
 There are some variables that you can add to the ``pelicanconf.py`` file that make things look good.
 
 .. code:: python
-    
+
     #
     # Theme variables
     #
@@ -28,7 +29,7 @@ There are some variables that you can add to the ``pelicanconf.py`` file that ma
     #CONTACT_BUSINESS_ADDR =''
 
     THEME_COLOUR = 'css-blue' # There are only 2 colours right now, pink and blue. Pink is Default
-    SITELICENSE = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.' # Change to what you want.
+    SITELICENSE = '' # Change to what you want.
     #
     #Frontpage customization
     #
