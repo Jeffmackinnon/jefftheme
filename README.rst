@@ -7,6 +7,7 @@ The base pelican theme for my site, `jeffmackinnon.com <https://jeffmackinnon.co
 There are some variables that you can add to the ``pelicanconf.py`` file that make things look good.
 
 .. code:: python
+    
     #
     # Theme variables
     #
