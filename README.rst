@@ -7,30 +7,38 @@ The base pelican theme for my site, `jeffmackinnon.com <https://jeffmackinnon.co
 There are some variables that you can add to the ``pelicanconf.py`` file that make things look good.
 
 .. code:: python
-    
     #
-    # JeffTheme variables
+    # Theme variables
     #
-    #THEME_COLOUR = 'css-blue' # Leave commented except for the blue option like jmkengineering.com
-
     ## The search things
-    DUCKDUCKGOSEARCHURL = '' # The URL of your site
-    ## Sidebar things
-    BIO_IMAGE = '' # Make sure that this is in the "images" folder
+    DUCKDUCKGOSEARCHURL = 'Your URL'
+    BIO_IMAGE = 'image' # Make sure that this is in the "images" folder
     ## The Social Things
-    SOCIAL_SHARE = True
     SOCIAL_TWITTER = 'jeffmackinnon'
-    SOCIAL_GITHUB = 'Jeffmackinnon'
+    SOCIAL_GITHUB = 'jeffmackinnon'
     SOCIAL_LINKEDIN = 'jeffmackinnon'
-    SOCIAL_FLICKR = 'jeffmackinnon'
-    SOCIAL_MASTODON = 'https://mastodon.social/@jeffmackinnon'
-    MICROBLOG = 'microblog' # This isn't used for anything .... yet but I'm thinking of adding a mini-posts for JUST the category here to the sidebar
+    SOCIAL_MASTODON = 'https://bluenoser.me/@Jeff'
 
-    #Contact Things
-    CONTACT_PHONE_NUM = ''
-    CONTACT_EMAIL = ''
-    CONTACT_HOME_ADDR = ''
-    CONTACT_BUSINESS_ADDR =''
+    #SOCIAL_FLICKR = ''
+    #MICROBLOG = ''
+    CONTACT_PHONE_NUM = '+# (###) ###-####'
+    CONTACT_EMAIL = 'name@url.tld'
+    #CONTACT_HOME_ADDR = ''
+    #CONTACT_BUSINESS_ADDR =''
+
+    THEME_COLOUR = 'css-blue' # There are only 2 colours right now, pink and blue. Pink is Default
+    SITELICENSE = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.' # Change to what you want.
+    #
+    #Frontpage customization
+    #
+    TAGLINEHEAD = 'This is a header'
+    TAGLINE = 'This is the tagline'
+    CORNERSTONE_CONTENT = True # If true add the html you want in include/cornerstone.html
+    NEWSLETTER = '' # Put the HTML or JS from your provider here.
+    INCLUDECATEGORY = True # This includes the Category in the article list
+    MOREBUTTON = True #This adds the "MORE" to the article list
+
+    # That's all folks
 
 
 You can copy the entire thing into your ``pelicanconf.py`` file and make the changes for your site. 

@@ -1,5 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% if TAGLINE or TAGLINEHEAD %}
+<!-- Banner -->
+<section id="banner">
+    <h1>{{ TAGLINEHEAD }}</h1>
+    <p>{{ TAGLINE }}</p>
+</section>
+{% endif %}
+
+{% if CORNERSTONE_CONTENT == True %}
+<!-- Cornerstone Pages -->
+<section id="cornerstone_pages">
+    {% include 'include/cornerstone.html' %}
+    <br />
+    <br />
+</section>
+{% endif %}
+
+{% if NEWSLETTER %}
+<!-- Newsletter CTA -->
+<section id="home-newsletter">
+    <h2>Our Newsletter</h2>
+    {{ NEWSLETTER }}
+    <br />
+</section>
+{% endif %}
+
 <section>
 {% block content_title %}
 <h2>All articles</h2>
@@ -19,14 +46,20 @@
                     
                     <!-- /.post-info -->                        
                         <div class="entry-content"> {{ article.summary }} </div>
+                        {% if INCLUDECATEGORY == True %}
                         {% if article.category %}
                         <div class="category">
                             Posted in: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
                         </div>
-                        {% endif %} <!--
+                        {% endif %}
+                        {% endif %}
+                        {% if MOREBUTTON == True %}
+                        <br />
                         <ul class="actions">
                             <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">More</a></li>
-                        </ul> -->
+                        </ul>
+                        <br />
+                        {% endif %}
                     <!-- /.entry-content -->
                     {% endif %}
             </article> 
