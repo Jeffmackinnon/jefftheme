@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if TAGLINE or TAGLINEHEAD %}
+{% if BANNER == True %}
 <!-- Banner -->
 <section id="banner">
-    <h1>{{ TAGLINEHEAD }}</h1>
-    <p>{{ TAGLINE }}</p>
+    <div class="content">
+        <header>
+            <h1>{{ TAGLINEHEAD }}</h1>
+            {% if TAGLINESUBHEAD %}
+            <p>{{ TAGLINESUBHEAD }}</p>
+            {% endif %}
+        </header>
+        <p>{{ TAGLINE }}</p>
+        <ul class="actions">
+            <li><a href="{{ BANNERLINK }}" class="button big">Learn More</a></li>
+        </ul>
+    </div>
+    <span class="image object">
+        <img src="{{ BANNERIMAGE }}" alt="" />
+    </span>
 </section>
 {% endif %}
 
@@ -19,55 +32,31 @@
 {% endif %}
 
 {% if NEWSLETTER %}
-<!-- Newsletter CTA -->
-<section id="home-newsletter">
-    <h2>Our Newsletter</h2>
-    {{ NEWSLETTER }}
-    <br />
+<section id="banner">
+    <div class="content">
+        <header class="major">
+            <h2>Our Newsletter</h2>
+        </header>
+        <p>We also have a weekly-ish newsletter where I keep you up to date with my thoughts on the industry, practical tutorials and more.</p>
+        <ul class="actions">
+            <li><a href="nl/" class="button big">Learn More</a></li>
+        </ul>
+    </div>
+    <span class="image object">
+        {{ NEWSLETTER }}
+    </span>
 </section>
 {% endif %}
 
 <section>
 {% block content_title %}
-<h2>All articles</h2>
+<header class="major">
+    <h2>Articles</h2>
+</header>
 {% endblock %}
-<div class="posts">
-    {% for article in articles_page.object_list %}
-            <article>
-                <header> <h2 id="indexheader"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2> </header>
 
-                        {% if article.photo_image %}
-                            <a href="{{ SITEURL }}/{{ article.url }}" class="image"><img src="{{ SITEURL }}/{{ article.photo_image[1] }}" style="max-width: 100%; display: inline; float: center;" /></a>
-                        {% endif %}
-                        {% if (article.category != MICROBLOG ) %}
-                    <!--<footer class="post-info">
-                        <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time> 
-                    </footer> -->
-                    
-                    <!-- /.post-info -->                        
-                        <div class="entry-content"> {{ article.summary }} </div>
-                        {% if INCLUDECATEGORY == True %}
-                        {% if article.category %}
-                        <div class="category">
-                            Posted in: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-                        </div>
-                        {% endif %}
-                        {% endif %}
-                        {% if MOREBUTTON == True %}
-                        <br />
-                        <ul class="actions">
-                            <li><a href="{{ SITEURL }}/{{ article.url }}" class="button">More</a></li>
-                        </ul>
-                        <br />
-                        {% endif %}
-                    <!-- /.entry-content -->
-                    {% endif %}
-            </article> 
-    {% endfor %}
-<!-- /#posts-list -->
-</div>
-{% if articles_page.has_other_pages() %}
-    {% include 'pagination.html' %}
-{% endif %}
+{% include 'include/paginated_posts.html' %}
+
+
 </section><!-- /#content -->
 {% endblock content %}

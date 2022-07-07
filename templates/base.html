@@ -3,6 +3,9 @@
 <head>
 {% block head %}
   <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+  {% if FAVICON %}
+  <link rel="icon" type="image/x-icon" href="{{ SITEURL }}/{{ FAVICON }}">
+  {% endif %}
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   {% if THEME_COLOUR %}
@@ -75,6 +78,10 @@
             {% if SOCIAL_LINKEDIN %}
               <li><a href="https://www.linkedin.com/in/{{ SOCIAL_LINKEDIN }}" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
             {% endif %}
+            {% if SOCIAL_YOUTUBE %}
+            <li><a href="https://www.youtube.com/channel/{{ SOCIAL_YOUTUBE }}" class="icon brands fa-youtube" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+            {% endif %}
+
             {% if FEED_ALL_ATOM %}
             <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" class="icon brands fa-atom"><span class="label">atom feed</span></a></li>
             {% endif %}
