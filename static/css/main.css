@@ -1,7 +1,7 @@
-@import url(fontawesome-all.min.css);
+@import url(../css-include/fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
-@import url(pygment.css);
-@import url(pelican.css);
+@import url(../css-include/pygment.css);
+@import url(../css-include/pelican.css);
 
 /* setting up colours */
 
