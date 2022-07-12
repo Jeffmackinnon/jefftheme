@@ -132,7 +132,15 @@
         <p><strong><a href="{{ SITEURL }}/mastodon-comments/bot.php?title={{ article.title|striptags }}&url={{ SITEURL }}/{{ article.url }}{% if article.photo_image %}&image=../{{ article.photo_image[1] }}{% endif %}">Click Here to Comment on Mastodon.</a></strong></p>
         <p>If its your first time commenting, <a href="https://jeffmackinnon.com/commenting-on-blog-with-mastodon.html">click here</a> to figure it out.</p>
       </div>
-        {% endif %}
+      {% endif %}
+
+      {% if ARTICLE_FOOTER == true %}
+      <!-- Cornerstone Pages -->
+      <section id="article-footer">
+          {% include 'include/article_footer.html' %}
+      </section>
+      {% endif %}
+
     </div><!-- /.entry-content -->
   </section>
 {% endblock %}

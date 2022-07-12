@@ -28,6 +28,7 @@
               {% endfor %}
             {% endif %}
           </ul>
+          {% if DISPLAY_CATEGORIES_ON_MENU %}
           <br />
           <br />
           <header class="major">
@@ -35,12 +36,12 @@
           </header>
           
           <ul>
-            {% if DISPLAY_CATEGORIES_ON_MENU %}
+            
               {% for cat, null in categories %}
                 <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
               {% endfor %}
-            {% endif %}
           </ul>
+          {% endif %}
       </nav>
 
        <!-- Section --> <!-- No mini posts for now
